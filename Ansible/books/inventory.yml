@@ -22,17 +22,4 @@ all:
 #db1.domain.com
 #db2.domain.com
 
-# Example inventory with Parent-Child relationships
-
-#[webservers:children]
-#webservers_in
-#webservers_uk
-
-#[webservers_in]
-#web1.domain.com
-#web2.domain.com
-
-#[webservers_uk]
-#web3.domain.com
-#web4.domain.com
 
