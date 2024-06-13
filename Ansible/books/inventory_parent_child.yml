@@ -1,0 +1,31 @@
+all:
+  children:
+    webservers:
+      children:
+        hosts:
+          server1_in:
+            web1.domain.com
+          server1_uk:
+            web2.domain.com
+    dbservers:
+      children:
+        hosts:
+          web3.domain.com
+          web4.domain.com
+
+
+
+# Example inventory with Parent-Child relationships
+
+#[webservers:children]
+#webservers_in
+#webservers_uk
+
+#[webservers_in]
+#web1.domain.com
+#web2.domain.com
+
+#[webservers_uk]
+#web3.domain.com
+#web4.domain.com
+
