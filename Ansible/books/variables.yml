@@ -1,0 +1,55 @@
+
+
+#inventory INI
+
+web1 ansible_host=server1.domain1.com ansible_connection=ssh ansible_ssh_pass=P@&sw
+db ansible_host=server2.domain1.com ansible_connection=winrm ansible_ssh_pass=P@&
+
+
+Playbook.yml
+-
+  name: ADD
+
+#Variables
+Jinja2 templating
+
+- name: Access Dictionay Variable Playbook.yml
+  ...
+
+  tasks:
+    - name: Diaplay the entire user dictonary #Variables
+      debug:
+        car: user
+    
+    - name: Access specific  values in the dictronary
+      debug:
+        msg: "Username : {{ user.name }}, Password:{{ user.password }}"    # without quotes
+
+    - name: Display the first package
+      debug:
+        msg: "The third package is {{ packages[2] }}" # specific item in a list
+
+    - name: Install packages using package manager
+      becomre: true
+      debug:
+        msg: "Installing package {{ item }} "
+      loop: "{{ packages }}"  #Entire list
+
+
+#-----------------------------
+
+#Variable precendence:: 
+    Host level variable has higher precedence than group level variable
+
+/etc/ansible/hosts
+web1 ansible_host=171.20.1.100
+web1 ansible_host=171.20.1.101 dns_server=10.5.5.4  #host level variable
+web1 ansible_host=171.20.1.102
+
+[web_servers]  #group name
+web1
+web2
+web3
+
+[web_servers:vars]  #group level variable
+dns_server=10.5.5.3

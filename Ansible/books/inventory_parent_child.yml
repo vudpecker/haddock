@@ -1,18 +1,19 @@
 all:
   children:
-    webservers:
+    webservers: #web server group
       children:
         hosts:
-          server1_in:
+          web_server_in:  #server group
             web1.domain.com
-          server1_uk:
+          web_server_uk:  #server group
             web2.domain.com
-    dbservers:
+    dbservers: #db server group
       children:
         hosts:
-          web3.domain.com
-          web4.domain.com
-
+          db_server_in:
+            db1.domain.com
+          db_server_uk:
+            db2.domain.com
 
 
 # Example inventory with Parent-Child relationships
@@ -28,4 +29,3 @@ all:
 #[webservers_uk]
 #web3.domain.com
 #web4.domain.com
-
