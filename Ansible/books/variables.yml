@@ -40,6 +40,8 @@ Jinja2 templating
 
 #Variable precendence:: 
     Host level variable has higher precedence than group level variable
+    Play vars has higher precedence than Host level variable
+    Extra vars has the highest precedence
 
 /etc/ansible/hosts
 web1 ansible_host=171.20.1.100
