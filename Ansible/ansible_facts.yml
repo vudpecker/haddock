@@ -1,0 +1,13 @@
+---
+
+#Ansible by default gathers facts about the host before executing a task. So it prints two task
+- name: print hello message
+  hosts: all
+  connection: local
+  tasks:
+  - debug:
+      msg: hello from Ansible
+  - debug:
+      var: ansible_facts  #facts gathered
+
+#To stop Ansible by defalt gathers facts about the host before executing a task.

@@ -1,5 +1,5 @@
--
-  name: Create user
+---
+- name: Create user
   hosts: localhost
   tasks:
     - user: name='{{ item }}' state=present
@@ -7,4 +7,3 @@
         - Raaj
         - Manoj
         - Navin
-        - 

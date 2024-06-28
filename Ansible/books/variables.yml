@@ -1,17 +1,10 @@
 
 
-#inventory INI
-
-web1 ansible_host=server1.domain1.com ansible_connection=ssh ansible_ssh_pass=P@&sw
-db ansible_host=server2.domain1.com ansible_connection=winrm ansible_ssh_pass=P@&
-
-
-Playbook.yml
+#Playbook.yml
 -
   name: ADD
 
-#Variables
-Jinja2 templating
+#Variables use Jinja2 templating
 
 - name: Access Dictionay Variable Playbook.yml
   ...
@@ -38,10 +31,6 @@ Jinja2 templating
 
 #-----------------------------
 
-#Variable precendence:: 
-    Host level variable has higher precedence than group level variable
-    Play vars has higher precedence than Host level variable
-    Extra vars has the highest precedence
 
 /etc/ansible/hosts
 web1 ansible_host=171.20.1.100
@@ -55,3 +44,32 @@ web3
 
 [web_servers:vars]  #group level variable
 dns_server=10.5.5.3
+
+
+
+- name: check /etc/ansible/hosts file
+  hosts: all
+  tasks:
+    - shell: cat /etc/ansible/hosts   #shell module
+      register: result                #register directive
+
+    - debug:        #print the previous command output
+      var: result
+      #var: result.rc  #only the return code
+      #var: result.stdout  #only the output
+
+
+#ansible-playbook playbook.yml --extra-vars "ntp_server=10.1.1.1"
+
+
+## hostvars['web2'].ansible_host 
+
+#Facts
+
+hostvars['web2'].ansible_facts.architecture
+
+
+hostvars['web2'].ansible_facts.mount
+hostvars['web2'].['ansible_facts'].['mount']
+
+
